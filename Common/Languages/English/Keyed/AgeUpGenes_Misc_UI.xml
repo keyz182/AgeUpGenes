@@ -1,5 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LanguageData>
-    <AgeUpGenes_SettingsCategory>AgeUpGenes</AgeUpGenes_SettingsCategory>
-    <AgeUpGenes_Settings_SettingName>Some Setting</AgeUpGenes_Settings_SettingName>
+    <AUP_Gen_RandomGene>{0} gained the {1} xenogene</AUP_Gen_RandomGene>
+    <AUP_BirthdayPickGene>Choose a {1} gene for {0_nameDef} to gain via mutation</AUP_BirthdayPickGene>
+
+
+    <AUP_FP_GeneEventChance>Gene Event Chance</AUP_FP_GeneEventChance>
+    <AUP_FP_GeneEventChance_Tooltop>The chance for gene selections to appear on e.g. growth moments</AUP_FP_GeneEventChance_Tooltop>
+    <AUP_FP_GoodGeneChance>Good Gene Chance {0}%</AUP_FP_GoodGeneChance>
+    <AUP_FP_GoodGeneChance_Tooltip>The chance for events that give genes to give good genes.</AUP_FP_GoodGeneChance_Tooltip>
+    <AUP_FP_BadGeneChance>Bad Gene Chance {0}%</AUP_FP_BadGeneChance>
+    <AUP_FP_BadGeneChance_Tooltip>The chance for events that give genes to give bad genes.</AUP_FP_BadGeneChance_Tooltip>
+    <AUP_FP_NeutralGeneChance>Neutral Gene Chance {0}%</AUP_FP_NeutralGeneChance>
+    <AUP_FP_NeutralGeneChance_Tooltip>The chance for events that give genes to give neutral genes.</AUP_FP_NeutralGeneChance_Tooltip>
+    <AUP_FP_RandomGeneChance>Random Gene Chance {0}%</AUP_FP_RandomGeneChance>
+    <AUP_FP_RandomGeneChance_Tooltip>The chance for events that give genes to give random genes.</AUP_FP_RandomGeneChance_Tooltip>
+
+    <AgeUpGenes_SettingsCategory>Age Up Genes</AgeUpGenes_SettingsCategory>
 </LanguageData>

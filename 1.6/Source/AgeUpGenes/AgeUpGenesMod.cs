@@ -1,6 +1,6 @@
-﻿using Verse;
+﻿using HarmonyLib;
 using UnityEngine;
-using HarmonyLib;
+using Verse;
 
 namespace AgeUpGenes;
 
@@ -17,7 +17,7 @@ public class AgeUpGenesMod : Mod
 #if DEBUG
         Harmony.DEBUG = true;
 #endif
-        Harmony harmony = new Harmony("keyz182.rimworld.AgeUpGenes.main");	
+        Harmony harmony = new("keyz182.rimworld.AgeUpGenes.main");	
         harmony.PatchAll();
     }
 
