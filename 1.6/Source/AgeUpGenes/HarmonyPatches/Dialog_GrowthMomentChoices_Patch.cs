@@ -16,20 +16,7 @@ namespace AgeUpGenes.HarmonyPatches;
 [HarmonyPatch(typeof(Dialog_GrowthMomentChoices))]
 public static class Dialog_GrowthMomentChoices_Patch
 {
-    public struct Choices
-    {
-        public Choices()
-        {
-            ShouldDoChoice = Rand.Chance(AgeUpGenesMod.settings.GeneEventChance);
-        }
-
-        public GeneClassification selectedGene;
-        public List<GeneClassification> geneChoices;
-        public GeneType? type;
-        public bool ShouldDoChoice;
-    }
-
-    public static Dictionary<Dialog_GrowthMomentChoices, Choices> DialogLookup = new();
+    public static Dictionary<Pawn, Choices> ChoiceLookup => GeneWorldComp.Instance.ChoiceLookup;
 
     public static Lazy<MethodInfo> DrawTraitChoices = new(() => AccessTools.Method(typeof(Dialog_GrowthMomentChoices), "DrawTraitChoices"));
     public static Lazy<MethodInfo> MakeChoices = new(() => AccessTools.Method(typeof(ChoiceLetter_GrowthMoment), "MakeChoices"));
@@ -62,17 +49,18 @@ public static class Dialog_GrowthMomentChoices_Patch
         }
     }
 
+    public static Lazy<FieldInfo> Letter = new(() => AccessTools.Field(typeof(Dialog_GrowthMomentChoices), "letter"));
+
+
     [HarmonyPatch("SelectionsMade")]
     [HarmonyPostfix]
     public static void SelectionsMadePostfix(Dialog_GrowthMomentChoices __instance, ref bool __result)
     {
-        if (__result && DialogLookup.TryGetValue(__instance, out Choices value) && value.ShouldDoChoice)
+        if (__result && ChoiceLookup.TryGetValue(((ChoiceLetter_GrowthMoment)Letter.Value.GetValue(__instance)).pawn, out Choices value) && value.ShouldDoChoice)
         {
             __result = value.selectedGene != null;
         }
     }
-
-    public static Lazy<FieldInfo> Letter = new(() => AccessTools.Field(typeof(Dialog_GrowthMomentChoices), "letter"));
 
     public static IntRange GeneRange = new(2, 12);
 
@@ -130,19 +118,21 @@ public static class Dialog_GrowthMomentChoices_Patch
         return output.ToList();
     }
 
+
     public static void DrawGeneSelector(Dialog_GrowthMomentChoices instance, float width, ref float curY)
     {
-        if (!DialogLookup.ContainsKey(instance))
+        ChoiceLetter_GrowthMoment letter = (ChoiceLetter_GrowthMoment)Letter.Value.GetValue(instance);
+        Pawn pawn = letter.pawn;
+        if (!ChoiceLookup.ContainsKey(pawn))
         {
-            DialogLookup[instance] = new Choices();
+            ChoiceLookup[pawn] = new Choices();
         }
 
-        Choices currentChoices = DialogLookup[instance];
+        Choices currentChoices = ChoiceLookup[pawn];
 
         if (!currentChoices.ShouldDoChoice)
             return;
 
-        ChoiceLetter_GrowthMoment letter = (ChoiceLetter_GrowthMoment)Letter.Value.GetValue(instance);
 
         if (letter.ArchiveView)
         {
@@ -170,16 +160,17 @@ public static class Dialog_GrowthMomentChoices_Patch
         }
         listingStandard.End();
         curY += (float)(listingStandard.CurHeight + 10.0 + 4.0);
-        DialogLookup[instance] = currentChoices;
+        ChoiceLookup[pawn] = currentChoices;
     }
 
     public static void MakeChoicesHook(Dialog_GrowthMomentChoices instance)
     {
-        if (!DialogLookup.TryGetValue(instance, out Choices currentChoices))
+        Pawn pawn = ((ChoiceLetter_GrowthMoment) Letter.Value.GetValue(instance)).pawn;
+        if (!ChoiceLookup.TryGetValue(pawn, out Choices currentChoices))
             return;
         if (!currentChoices.ShouldDoChoice)
         {
-            DialogLookup.Remove(instance);
+            ChoiceLookup.Remove(pawn);
             return;
         }
 
@@ -196,6 +187,6 @@ public static class Dialog_GrowthMomentChoices_Patch
 
         letter.pawn.genes.AddGene(currentChoices.selectedGene.gene, isXenoGene);
 
-        DialogLookup.Remove(instance);
+        ChoiceLookup.Remove(pawn);
     }
 }
