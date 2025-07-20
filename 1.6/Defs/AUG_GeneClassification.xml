@@ -1013,32 +1013,32 @@
                 <weight>0.1</weight>
                 <geneClassification />
             </li>
-            <li MayRequire="resplice.xotr.core">
+            <li MayRequire="resplice.xotr.core,Ludeon.RimWorld.Anomaly">
                 <gene>RS_VoidTouched</gene>
                 <weight>0.01</weight>
                 <geneClassification />
             </li>
-            <li MayRequire="resplice.xotr.core">
+            <li MayRequire="resplice.xotr.core,Ludeon.RimWorld.Anomaly">
                 <gene>RS_UnnaturalHealing</gene>
                 <weight>0.05</weight>
                 <geneClassification />
             </li>
-            <li MayRequire="resplice.xotr.core">
+            <li MayRequire="resplice.xotr.core,Ludeon.RimWorld.Anomaly">
                 <gene>RS_TransmuteSteel</gene>
                 <weight>0.05</weight>
                 <geneClassification />
             </li>
-            <li MayRequire="resplice.xotr.core">
+            <li MayRequire="resplice.xotr.core,Ludeon.RimWorld.Anomaly">
                 <gene>RS_DeadlifeDust</gene>
                 <weight>0.05</weight>
                 <geneClassification />
             </li>
-            <li MayRequire="resplice.xotr.core">
+            <li MayRequire="resplice.xotr.core,Ludeon.RimWorld.Anomaly">
                 <gene>RS_ShapeFlesh</gene>
                 <weight>0.05</weight>
                 <geneClassification />
             </li>
-            <li MayRequire="resplice.xotr.core">
+            <li MayRequire="resplice.xotr.core,Ludeon.RimWorld.Anomaly">
                 <gene>RS_PsychicSlaughter</gene>
                 <weight>0.05</weight>
                 <geneClassification />
@@ -3328,12 +3328,12 @@
                 <weight>0.1</weight>
                 <geneClassification />
             </li>
-            <li MayRequire="resplice.xotr.core">
+            <li MayRequire="resplice.xotr.core,Ludeon.RimWorld.Anomaly">
                 <gene>RS_Tentacle_Limbs</gene>
                 <weight>0.1</weight>
                 <geneClassification />
             </li>
-            <li MayRequire="resplice.xotr.core">
+            <li MayRequire="resplice.xotr.core,Ludeon.RimWorld.Anomaly">
                 <gene>RS_Tentacle_Whip</gene>
                 <weight>0.1</weight>
                 <geneClassification />
